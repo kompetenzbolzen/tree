@@ -10,19 +10,24 @@
 
 #include "cNode.h"
 #include <string>
+#include <list>
 
 using namespace std;
 
 class cTree{
 public:
+	cTree();
+	~cTree();
 	void insert(cData*);
 	void insert(string);
-
+	void balance();
+	void getList(list<cData>*);
 	void remove(cData*);
 	cData search(string);
 
 
 private:
+	cNode* root;
 
 };
 

@@ -31,19 +31,27 @@ cData cDatanode::getDataObject()
 	return *data;
 }//getDataObject
 
-void cDatanode::insert(cData* _data, cNode* _me = NULL)
+void cDatanode::insert(cData* _data, cNode** _me)
 {
 	if (*_data > *data)
 		//nextBigger->isEnd() ? (void)(nextBigger = new cDatanode(_data)) : nextBigger->insert(_data);
-		nextBigger->insert(_data, nextBigger);
+		nextBigger->insert(_data, &nextBigger);
 	else
-		nextSmaller->insert(_data, nextSmaller);
+		nextSmaller->insert(_data, &nextSmaller);
 		//nextSmaller->isEnd() ? (void)(nextSmaller = new cDatanode(_data)) : nextSmaller->insert(_data);
 }//insert
 
-void cDatanode::remove(cData* _data)
+void cDatanode::remove(cData* _data, list<cData>* _list)
 {
-
+	if(*_data == *data)
+	{
+		nextSmaller->getSortet(_list);
+		nextBigger->getSortet(_list);
+	}
+	else if (*_data > *data)
+		nextBigger->remove(_data, _list);
+	else if (*_data < *data)
+		nextSmaller->remove(_data, _list);
 }//remove
 
 cData* cDatanode::search(string _search)
@@ -62,12 +70,20 @@ bool cDatanode::isEnd()
 	return false;
 }//isEnd
 
-list<cData>* cDatanode::getSortet(list<cData>* _list)
+void cDatanode::getSortet(list<cData>* _list)
 {
 	nextSmaller->getSortet(_list);
 	_list->push_back(*data);
-	return nextBigger->getSortet(_list);
-}//getSortet
+	nextBigger->getSortet(_list);
+}//getSorte
+
+void cDatanode::clear()
+{
+	nextSmaller->clear();
+	delete nextSmaller;
+	nextBigger->clear();
+	delete nextSmaller;
+}
 
 //
 //==============================================================================================================================
@@ -87,15 +103,15 @@ cData cEndnode::getDataObject()
 	return (cData)NULL;
 }
 
-void cEndnode::insert(cData* _data, cNode* _me)
+void cEndnode::insert(cData* _data, cNode** _me)
 {
-	_me = _data;
+	*_me = new cDatanode(_data);
 	delete this;
 }
 
-void cEndnode::remove(cData*)
+void cEndnode::remove(cData*, list<cData>*)
 {
-
+	return;
 }
 
 cData* cEndnode::search(string)
@@ -103,12 +119,15 @@ cData* cEndnode::search(string)
 	return NULL;
 }
 
-list<cData>* cEndnode::getSortet(list<cData>* _list)
+void cEndnode::getSortet(list<cData>* _list)
 {
-	return _list;
+	return;
 }
 
-
+void cEndnode::clear()
+{
+	return;
+}
 
 
 

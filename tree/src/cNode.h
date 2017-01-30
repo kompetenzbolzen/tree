@@ -22,11 +22,12 @@ public:
 	/*
 	 * returns dataObject
 	 */
-	virtual void insert(cData*,  cNode* = NULL) = 0;
+	virtual void insert(cData*,  cNode** = NULL) = 0;
 	/*
 	 * Inserts *cData into tree
+	 * cNode** required to change pointer in the caller's pointer to next element
 	 */
-	virtual void remove(cData*) = 0;
+	virtual void remove(cData*, list<cData>*) = 0;
 	/*
 	 * Removes *cData from tree
 	 */
@@ -38,12 +39,15 @@ public:
 	/*
 	 * returns false
 	 */
-	virtual list<cData>* getSortet(list<cData>* _list) = 0;
+	virtual void getSortet(list<cData>* _list) = 0;
+
+	virtual void clear() = 0;
 
 };
 
 class cDatanode:public cNode
 {
+public:
 	cDatanode(cData* _data);
 	~cDatanode();
 
@@ -51,11 +55,11 @@ class cDatanode:public cNode
 	/*
 	 * returns dataObject
 	 */
-	void insert(cData*, cNode* = NULL);
+	void insert(cData*, cNode** = NULL);
 	/*
 	 * Inserts *cData into tree
 	 */
-	void remove(cData*);
+	void remove(cData*, list<cData>*);
 	/*
 	 * Removes *cData from tree
 	 */
@@ -67,7 +71,9 @@ class cDatanode:public cNode
 	/*
 	 * returns false
 	 */
-	list<cData>* getSortet(list<cData>* _list);
+	void getSortet(list<cData>* _list);
+
+	void clear();
 private:
 	cNode *nextSmaller, *nextBigger;
 	cData *data;
@@ -84,11 +90,11 @@ public:
 	/*
 	 * returns dataObject
 	 */
-	void insert(cData*, cNode* );
+	void insert(cData*, cNode** );
 	/*
 	 * Inserts *cData into tree
 	 */
-	void remove(cData*);
+	void remove(cData*, list<cData>*);
 	/*
 	 * Removes *cData from tree
 	 */
@@ -100,7 +106,9 @@ public:
 	/*
 	 * returns false
 	 */
-	list<cData>* getSortet(list<cData>* _list);
+	void getSortet(list<cData>* _list);
+
+	void clear();
 
 private:
 };
