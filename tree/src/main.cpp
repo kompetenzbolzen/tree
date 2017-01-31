@@ -10,6 +10,14 @@
 
 int main (void)
 {
+	cTree* a = new cTree();
+	a->insert("Hallo");
+	a->insert("faggot");
+	a->insert("Arschloch");
+	a->draw();
+	cout << "-------------------" << endl;
+	a->remove(a->search("Hallo"));
+	a->draw();
 
 	return 0;
 }

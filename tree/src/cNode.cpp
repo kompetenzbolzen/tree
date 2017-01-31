@@ -41,17 +41,20 @@ void cDatanode::insert(cData* _data, cNode** _me)
 		//nextSmaller->isEnd() ? (void)(nextSmaller = new cDatanode(_data)) : nextSmaller->insert(_data);
 }//insert
 
-void cDatanode::remove(cData* _data, list<cData>* _list)
+void cDatanode::remove(cData* _data, list<cData>* _list, cNode** _me)
 {
 	if(*_data == *data)
 	{
 		nextSmaller->getSortet(_list);
 		nextBigger->getSortet(_list);
+		clear();
+		*_me = new cEndnode();
+		delete this;
 	}
 	else if (*_data > *data)
-		nextBigger->remove(_data, _list);
+		nextBigger->remove(_data, _list, &nextBigger);
 	else if (*_data < *data)
-		nextSmaller->remove(_data, _list);
+		nextSmaller->remove(_data, _list, &nextSmaller);
 }//remove
 
 cData* cDatanode::search(string _search)
@@ -81,10 +84,23 @@ void cDatanode::clear()
 {
 	nextSmaller->clear();
 	delete nextSmaller;
+	nextSmaller = NULL;
+
 	nextBigger->clear();
-	delete nextSmaller;
+	delete nextBigger;
+	nextBigger = NULL;
 }
 
+void cDatanode::draw(int _depth)
+{
+	for (int i = 0; i <= _depth; i++)
+		cout << " ";
+	cout << "|-" << data->getData() << endl;
+
+	nextSmaller->draw(_depth + 1);
+	nextBigger->draw(_depth + 1);
+
+}
 //
 //==============================================================================================================================
 //
@@ -109,7 +125,7 @@ void cEndnode::insert(cData* _data, cNode** _me)
 	delete this;
 }
 
-void cEndnode::remove(cData*, list<cData>*)
+void cEndnode::remove(cData*, list<cData>*, cNode**)
 {
 	return;
 }
@@ -129,7 +145,13 @@ void cEndnode::clear()
 	return;
 }
 
+void cEndnode::draw(int _depth)
+{
+	for (int i = 0; i <= _depth; i++)
+		cout << " ";
 
+	cout << "|-$\n";
+}
 
 
 

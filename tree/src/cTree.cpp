@@ -31,8 +31,8 @@ void cTree::insert(string _data)
 
 void cTree::remove(cData* _data)
 {
-	list<cData> dataList; //List of Data that ahs to be re-inserted into the tree
-	root->remove(_data, &dataList);
+	list<cData> dataList; //List of Data that has to be re-inserted into the tree
+	root->remove(_data, &dataList, &root);
 
 	///TODO: Optimize!!!
 	while(!dataList.empty())
@@ -46,3 +46,34 @@ void cTree::getList(list<cData>* _list)
 {
 	root->getSortet(_list);
 }
+
+void cTree::draw()
+{
+	root->draw(0);
+}
+
+cData* cTree::search(string _search)
+{
+	return root->search(_search);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

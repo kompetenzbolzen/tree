@@ -10,6 +10,7 @@
 
 #include "cData.h"
 #include <list>
+#include <iostream>
 
 using namespace std;
 
@@ -27,7 +28,7 @@ public:
 	 * Inserts *cData into tree
 	 * cNode** required to change pointer in the caller's pointer to next element
 	 */
-	virtual void remove(cData*, list<cData>*) = 0;
+	virtual void remove(cData*, list<cData>*, cNode**) = 0;
 	/*
 	 * Removes *cData from tree
 	 */
@@ -43,6 +44,7 @@ public:
 
 	virtual void clear() = 0;
 
+	virtual void draw(int _depth) = 0;
 };
 
 class cDatanode:public cNode
@@ -59,7 +61,7 @@ public:
 	/*
 	 * Inserts *cData into tree
 	 */
-	void remove(cData*, list<cData>*);
+	void remove(cData*, list<cData>*, cNode**);
 	/*
 	 * Removes *cData from tree
 	 */
@@ -72,8 +74,14 @@ public:
 	 * returns false
 	 */
 	void getSortet(list<cData>* _list);
-
+	/*
+	 * Copy all cData Instances into _list
+	 */
 	void clear();
+	/*
+	 * clears the tree
+	 */
+	void draw(int _depth);
 private:
 	cNode *nextSmaller, *nextBigger;
 	cData *data;
@@ -94,7 +102,7 @@ public:
 	/*
 	 * Inserts *cData into tree
 	 */
-	void remove(cData*, list<cData>*);
+	void remove(cData*, list<cData>*, cNode**);
 	/*
 	 * Removes *cData from tree
 	 */
@@ -110,6 +118,7 @@ public:
 
 	void clear();
 
+	void draw(int _depth);
 private:
 };
 
