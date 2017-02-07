@@ -22,8 +22,10 @@ cDatanode::cDatanode(cData* _data)
 
 cDatanode::~cDatanode()
 {
+	cout << "DestructorNode\n";
 	delete data;
-	data = NULL;
+	delete nextSmaller;
+	delete nextBigger;
 }//Destructor
 
 cData cDatanode::getDataObject()
@@ -34,11 +36,9 @@ cData cDatanode::getDataObject()
 void cDatanode::insert(cData* _data, cNode** _me)
 {
 	if (*_data > *data)
-		//nextBigger->isEnd() ? (void)(nextBigger = new cDatanode(_data)) : nextBigger->insert(_data);
 		nextBigger->insert(_data, &nextBigger);
 	else
 		nextSmaller->insert(_data, &nextSmaller);
-		//nextSmaller->isEnd() ? (void)(nextSmaller = new cDatanode(_data)) : nextSmaller->insert(_data);
 }//insert
 
 void cDatanode::remove(cData* _data, list<cData>* _list, cNode** _me)
@@ -47,7 +47,6 @@ void cDatanode::remove(cData* _data, list<cData>* _list, cNode** _me)
 	{
 		nextSmaller->getSortet(_list);
 		nextBigger->getSortet(_list);
-		clear();
 		*_me = new cEndnode();
 		delete this;
 	}
@@ -82,13 +81,17 @@ void cDatanode::getSortet(list<cData>* _list)
 
 void cDatanode::clear()
 {
-	nextSmaller->clear();
+	/*nextSmaller->clear();
 	delete nextSmaller;
 	nextSmaller = NULL;
 
 	nextBigger->clear();
 	delete nextBigger;
-	nextBigger = NULL;
+	nextBigger = NULL;*/
+
+	delete nextSmaller;
+	delete nextBigger;
+	nextSmaller = nextBigger = NULL;
 }
 
 void cDatanode::draw(int _depth)

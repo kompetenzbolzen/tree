@@ -23,6 +23,7 @@ public:
 	void balance();
 	void getList(list<cData>*);
 	void remove(cData*);
+	void clear();
 	cData* search(string);
 
 	void draw();

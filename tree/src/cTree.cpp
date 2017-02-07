@@ -14,7 +14,6 @@ cTree::cTree()
 
 cTree::~cTree()
 {
-	root->clear();
 	delete root;
 }
 
@@ -57,6 +56,13 @@ cData* cTree::search(string _search)
 	return root->search(_search);
 }
 
+void cTree::clear()
+{
+	//root->clear();
+	cout << "clearTree\n";
+	delete root;
+	root = new cEndnode();
+}
 
 
 
