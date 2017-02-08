@@ -22,8 +22,9 @@ cDatanode::cDatanode(cData* _data)
 
 cDatanode::~cDatanode()
 {
-	cout << "DestructorNode\n";
 	delete data;
+	///TODO FIX this shit -> remove()?
+
 	delete nextSmaller;
 	delete nextBigger;
 }//Destructor
@@ -81,17 +82,10 @@ void cDatanode::getSortet(list<cData>* _list)
 
 void cDatanode::clear()
 {
-	/*nextSmaller->clear();
-	delete nextSmaller;
-	nextSmaller = NULL;
-
-	nextBigger->clear();
-	delete nextBigger;
-	nextBigger = NULL;*/
-
 	delete nextSmaller;
 	delete nextBigger;
-	nextSmaller = nextBigger = NULL;
+	nextSmaller = new cEndnode();
+	nextBigger = new cEndnode();
 }
 
 void cDatanode::draw(int _depth)
@@ -113,7 +107,7 @@ cEndnode::~cEndnode() {}
 
 bool cEndnode::isEnd()
 {
-	delete this; ///TODO Check if it works!!!
+	delete this;
 	return true;
 }
 

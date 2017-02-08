@@ -29,6 +29,11 @@ public:
 	 * Returns content of cData instance as String
 	 */
 
+	cData* clone();
+	/*
+	 * clones current cData instance
+	 */
+
 	bool operator<(cData);
 	bool operator>(cData);
 	bool operator<(string);

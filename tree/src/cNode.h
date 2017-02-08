@@ -39,10 +39,17 @@ public:
 	virtual bool isEnd() = 0;
 	/*
 	 * returns false
+	 * TODO Remove
 	 */
 	virtual void getSortet(list<cData>* _list) = 0;
+	/*
+	 * TODO Fix memory exception. -> remove()?
+	 */
 
 	virtual void clear() = 0;
+	/*
+	 * TODO Remove
+	 */
 
 	virtual void draw(int _depth) = 0;
 };

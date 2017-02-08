@@ -63,6 +63,9 @@ bool cData::operator==(string _data)
 		return true;
 	return false;
 }
-
+cData *cData::clone()
+{
+	return new cData(sData);
+}
 
 
