@@ -23,8 +23,6 @@ cDatanode::cDatanode(cData* _data)
 cDatanode::~cDatanode()
 {
 	delete data;
-	///TODO FIX this shit -> remove()?
-
 	delete nextSmaller;
 	delete nextBigger;
 }//Destructor

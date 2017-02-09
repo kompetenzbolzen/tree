@@ -58,10 +58,40 @@ cData* cTree::search(string _search)
 
 void cTree::clear()
 {
-	//root->clear();
-	cout << "clearTree\n";
 	delete root;
 	root = new cEndnode();
+}
+
+void cTree::insertList(list<cData>* _list)
+{
+	unsigned int oldSize= _list->size();
+	list<cData> tmpList;
+
+	if (oldSize <= 0)
+		return;
+
+	for (unsigned int i = 0; i < oldSize / 2; i++)
+	{
+		tmpList.push_back(_list->front());
+		_list->pop_front();
+	}
+
+	insert(_list->front().clone());
+	_list->pop_front();
+	insertList(&tmpList);
+
+	tmpList.clear();
+
+	if(_list->size() <= 0)
+		return;
+
+	oldSize = _list->size();
+	for (unsigned int i = 0; i < oldSize; i++)
+	{
+		tmpList.push_back(_list->front());
+		_list->pop_front();
+	}
+	insertList(&tmpList);
 }
 
 

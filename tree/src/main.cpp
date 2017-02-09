@@ -11,23 +11,41 @@
 int main (void)
 {
 	cTree* a = new cTree();
-	a->insert("Hallo");
-	a->insert("servus");
-	a->insert("moinmoin");
+	a->insert("z");
+	a->insert("f");
+	a->insert("a");
+	a->insert("n");
+	a->insert("p");
+	a->insert("k");
 	a->draw();
 	cout << "-------------------" << endl;
-	a->remove(a->search("Hallo"));
-	a->draw();
-	cout << "clear\n";
-	a->clear();
+	list<cData> list, list2;
+	a->getList(&list);
 
+	list2 = list;
+
+	unsigned int asdf = list2.size();
+
+	for(unsigned int i = 0; i < asdf;i++)
+	{
+		cout << list2.front().getData() << ", ";
+		list2.pop_front();
+	}
+	cout << endl;
+
+	a->clear();
+	a->insertList(&list);
+	a->draw();
+
+	delete a;
 	/*while(1)
 	{
 		a->insert("h");
 		a->insert("y");
 		a->insert("k");
-		a->insert("h");
+		a->insert("z");
 		a->remove(a->search("h"));
+		a->remove(a->search("k"));
 		a->clear();
 	}*/
 

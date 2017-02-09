@@ -20,6 +20,7 @@ public:
 	~cTree();
 	void insert(cData*);
 	void insert(string);
+	void insertList(list<cData>*);
 	void balance();
 	void getList(list<cData>*);
 	void remove(cData*);

@@ -43,7 +43,7 @@ public:
 	 */
 	virtual void getSortet(list<cData>* _list) = 0;
 	/*
-	 * TODO Fix memory exception. -> remove()?
+	 * gets sortet list
 	 */
 
 	virtual void clear() = 0;
