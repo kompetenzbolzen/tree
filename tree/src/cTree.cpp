@@ -34,12 +34,6 @@ void cTree::remove(cData* _data)
 	root->remove(_data, &dataList, &root);
 
 	insertList(&dataList);
-	///TODO: Optimize!!!
-	/*while(!dataList.empty())
-	{
-		insert(dataList.front().clone());
-		dataList.pop_front();
-	}*/
 }
 
 void cTree::getList(list<cData>* _list)

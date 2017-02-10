@@ -66,25 +66,12 @@ cData* cDatanode::search(string _search)
 	return NULL;
 }//search
 
-bool cDatanode::isEnd()
-{
-	return false;
-}//isEnd
-
 void cDatanode::getSortet(list<cData>* _list)
 {
 	nextSmaller->getSortet(_list);
 	_list->push_back(*data);
 	nextBigger->getSortet(_list);
 }//getSorte
-
-void cDatanode::clear()
-{
-	delete nextSmaller;
-	delete nextBigger;
-	nextSmaller = new cEndnode();
-	nextBigger = new cEndnode();
-}
 
 void cDatanode::draw(int _depth)
 {
@@ -103,11 +90,6 @@ void cDatanode::draw(int _depth)
 cEndnode::cEndnode() {}
 cEndnode::~cEndnode() {}
 
-bool cEndnode::isEnd()
-{
-	delete this;
-	return true;
-}
 
 cData cEndnode::getDataObject()
 {
@@ -131,11 +113,6 @@ cData* cEndnode::search(string)
 }
 
 void cEndnode::getSortet(list<cData>* _list)
-{
-	return;
-}
-
-void cEndnode::clear()
 {
 	return;
 }

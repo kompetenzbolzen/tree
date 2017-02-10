@@ -36,19 +36,9 @@ public:
 	/*
 	 * Searches for a Object by its Primary Key, returns pointer pointing at result (NULL if no result)
 	 */
-	virtual bool isEnd() = 0;
-	/*
-	 * returns false
-	 * TODO Remove
-	 */
 	virtual void getSortet(list<cData>* _list) = 0;
 	/*
 	 * gets sortet list
-	 */
-
-	virtual void clear() = 0;
-	/*
-	 * TODO Remove
 	 */
 
 	virtual void draw(int _depth) = 0;
@@ -76,17 +66,9 @@ public:
 	/*
 	 * Searches for a Object by its Primary Key, returns pointer pointing at result (NULL if no result)
 	 */
-	bool isEnd();
-	/*
-	 * returns false
-	 */
 	void getSortet(list<cData>* _list);
 	/*
 	 * Copy all cData Instances into _list
-	 */
-	void clear();
-	/*
-	 * clears the tree
 	 */
 	void draw(int _depth);
 private:
@@ -117,13 +99,7 @@ public:
 	/*
 	 * Searches for a Object by its Primary Key, returns pointer pointing at result (NULL if no result)
 	 */
-	bool isEnd();
-	/*
-	 * returns false
-	 */
 	void getSortet(list<cData>* _list);
-
-	void clear();
 
 	void draw(int _depth);
 private:
