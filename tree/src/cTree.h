@@ -57,13 +57,17 @@ public:
 	 */
 	unsigned int gradeOfUnbalance();
 	/*
-	 * returns number from 0 - 10
-	 * 0: Balanced
-	 * 10: most unbalanced
+	 *
 	 */
 	cData* search(string);
+	/*
+	 * returns pointer to matching object
+	 */
 
 	void draw();
+	/*
+	 * draws subtree in ASCII
+	 */
 
 
 private:

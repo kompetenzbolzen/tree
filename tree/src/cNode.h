@@ -30,7 +30,7 @@ public:
 	 */
 	virtual void remove(cData*, list<cData>*, cNode**) = 0;
 	/*
-	 * Removes *cData from tree
+	 * Removes *cData from tree. Its subtree is stored in list<cData>*. cNode** refers to pointer to pointer to self to be able to change reference
 	 */
 	virtual cData* search(string) = 0;
 	/*
@@ -42,14 +42,16 @@ public:
 	 */
 	virtual unsigned int  getSubtreeSize() = 0;
 	/*
-	 * returns size of tree under node
+	 * returns size of subtree
 	 */
 	virtual unsigned int getDepth(unsigned int) = 0;
 	/*
 	 * returns maximum depth under node
 	 */
-
 	virtual void draw(int _depth) = 0;
+	/*
+	 *
+	 */
 };
 
 class cDatanode:public cNode

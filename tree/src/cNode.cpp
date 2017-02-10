@@ -36,6 +36,7 @@ void cDatanode::insert(cData* _data, cNode** _me)
 {
 	if (*_data > *data)
 		nextBigger->insert(_data, &nextBigger);
+	//TODO Add equals check to prevent double insertion!
 	else
 		nextSmaller->insert(_data, &nextSmaller);
 }//insert
@@ -44,9 +45,10 @@ void cDatanode::remove(cData* _data, list<cData>* _list, cNode** _me)
 {
 	if(*_data == *data)
 	{
+		//save subtree inorder before deleting
 		nextSmaller->getSortet(_list);
 		nextBigger->getSortet(_list);
-		*_me = new cEndnode();
+		*_me = new cEndnode(); //set pointer to this in parent to new cEndnode
 		delete this;
 	}
 	else if (*_data > *data)
@@ -105,7 +107,6 @@ unsigned int cDatanode::getSubtreeSize()
 cEndnode::cEndnode() {}
 cEndnode::~cEndnode() {}
 
-
 cData cEndnode::getDataObject()
 {
 	return (cData)NULL;
@@ -137,7 +138,7 @@ void cEndnode::draw(int _depth)
 	for (int i = 0; i <= _depth; i++)
 		cout << " ";
 
-	cout << "|-$\n";
+	cout << "|::\n";
 }
 
 unsigned int cEndnode::getSubtreeSize()
