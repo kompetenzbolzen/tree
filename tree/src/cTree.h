@@ -24,6 +24,7 @@ public:
 	void balance();
 	void getList(list<cData>*);
 	void remove(cData*);
+	void sort();
 	void clear();
 	cData* search(string);
 

@@ -33,12 +33,13 @@ void cTree::remove(cData* _data)
 	list<cData> dataList; //List of Data that has to be re-inserted into the tree
 	root->remove(_data, &dataList, &root);
 
+	insertList(&dataList);
 	///TODO: Optimize!!!
-	while(!dataList.empty())
+	/*while(!dataList.empty())
 	{
 		insert(dataList.front().clone());
 		dataList.pop_front();
-	}
+	}*/
 }
 
 void cTree::getList(list<cData>* _list)
@@ -92,6 +93,14 @@ void cTree::insertList(list<cData>* _list)
 		_list->pop_front();
 	}
 	insertList(&tmpList);
+}
+
+void cTree::sort()
+{
+	list<cData> sortetList;
+	root->getSortet(&sortetList);
+	clear();
+	insertList(&sortetList);
 }
 
 
