@@ -19,9 +19,13 @@ int main (void)
 	}
 
 	a->draw();
+	cout << a->size() << "/" << a->depth() << endl;
+	cout << a->gradeOfUnbalance() << endl;
 	cout << "-------------------" << endl;
 	a->sort();
 	a->draw();
+	cout << a->size() << "/" << a->depth() << endl;
+	cout << a->gradeOfUnbalance() << endl;
 
 	delete a;
 

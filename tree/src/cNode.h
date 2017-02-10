@@ -40,6 +40,14 @@ public:
 	/*
 	 * gets sortet list
 	 */
+	virtual unsigned int  getSubtreeSize() = 0;
+	/*
+	 * returns size of tree under node
+	 */
+	virtual unsigned int getDepth(unsigned int) = 0;
+	/*
+	 * returns maximum depth under node
+	 */
 
 	virtual void draw(int _depth) = 0;
 };
@@ -71,6 +79,8 @@ public:
 	 * Copy all cData Instances into _list
 	 */
 	void draw(int _depth);
+	unsigned int getSubtreeSize();
+	unsigned int getDepth(unsigned int);
 private:
 	cNode *nextSmaller, *nextBigger;
 	cData *data;
@@ -100,6 +110,9 @@ public:
 	 * Searches for a Object by its Primary Key, returns pointer pointing at result (NULL if no result)
 	 */
 	void getSortet(list<cData>* _list);
+
+	unsigned int getSubtreeSize();
+	unsigned int getDepth(unsigned int);
 
 	void draw(int _depth);
 private:

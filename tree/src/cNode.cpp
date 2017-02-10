@@ -83,6 +83,21 @@ void cDatanode::draw(int _depth)
 	nextBigger->draw(_depth + 1);
 
 }
+
+unsigned int cDatanode::getDepth(unsigned int _depth)
+{
+	unsigned int depth1, depth2;
+
+	depth1 = nextSmaller->getDepth(_depth + 1);
+	depth2 = nextBigger->getDepth(_depth + 1);
+
+	return depth1 < depth2 ? depth2:depth1; //return bigger depth
+}
+
+unsigned int cDatanode::getSubtreeSize()
+{
+	return nextSmaller->getSubtreeSize() + nextBigger->getSubtreeSize() + 1;
+}
 //
 //==============================================================================================================================
 //
@@ -125,7 +140,15 @@ void cEndnode::draw(int _depth)
 	cout << "|-$\n";
 }
 
+unsigned int cEndnode::getSubtreeSize()
+{
+	return 0;
+}
 
+unsigned int cEndnode::getDepth(unsigned int _depth)
+{
+	return _depth;
+}
 
 
 

@@ -11,6 +11,7 @@
 #include "cNode.h"
 #include <string>
 #include <list>
+#include <math.h>
 
 using namespace std;
 
@@ -19,13 +20,47 @@ public:
 	cTree();
 	~cTree();
 	void insert(cData*);
+	/*
+	 * inserts element into tree
+	 */
 	void insert(string);
+	/*
+	 * inserts string into tree
+	 */
 	void insertList(list<cData>*);
-	void balance();
+	/*
+	 * inserts List into tree as balanced as possible
+	 */
 	void getList(list<cData>*);
+	/*
+	 * returns inorder list
+	 */
 	void remove(cData*);
+	/*
+	 * remove node from tree
+	 */
 	void sort();
+	/*
+	 * balances tree
+	 */
 	void clear();
+	/*
+	 * emptys the tree
+	 */
+	unsigned int size();
+	/*
+	 * returns overall size
+	 */
+	unsigned int depth();
+	/*
+	 * returns maximum depth
+	 */
+	unsigned int gradeOfUnbalance();
+	/*
+	 * returns number from 0 - 10
+	 * 0: Balanced
+	 * 10: most unbalanced
+	 */
 	cData* search(string);
 
 	void draw();

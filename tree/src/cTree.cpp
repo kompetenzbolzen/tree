@@ -97,6 +97,24 @@ void cTree::sort()
 	insertList(&sortetList);
 }
 
+unsigned int cTree::size()
+{
+	return root->getSubtreeSize();
+}
+
+unsigned int cTree::depth()
+{
+	return root->getDepth(0);
+}
+
+unsigned int cTree::gradeOfUnbalance()
+{
+	double minDepth = log2(size());
+	unsigned int iDepth = depth();
+
+	return (iDepth / minDepth) - 1; //-1 so 100% = 0
+}
+
 
 
 
