@@ -39,10 +39,12 @@ public:
 	virtual cData* getById(unsigned int, unsigned int&) = 0;
 	/*
 	 * searches for obejct ID (-> inorder)
+	 * int: wanted if
+	 * int&: id counter
 	 */
 	virtual void getSortet(list<cData>* _list) = 0;
 	/*
-	 * gets sortet list
+	 * saves inorder list to *_list
 	 */
 	virtual unsigned int  getSubtreeSize() = 0;
 	/*
@@ -51,10 +53,11 @@ public:
 	virtual unsigned int getDepth(unsigned int) = 0;
 	/*
 	 * returns maximum depth under node
+	 * unsigned int: depth of parent
 	 */
 	virtual void draw(int _depth) = 0;
 	/*
-	 *
+	 *draws tree in Ascii
 	 */
 };
 

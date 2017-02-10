@@ -36,7 +36,8 @@ void cDatanode::insert(cData* _data, cNode** _me)
 {
 	if (*_data > *data)
 		nextBigger->insert(_data, &nextBigger);
-	//TODO Add equals check to prevent double insertion!
+	else if (*_data == *data)
+		return; //data already exists, abort
 	else
 		nextSmaller->insert(_data, &nextSmaller);
 }//insert
