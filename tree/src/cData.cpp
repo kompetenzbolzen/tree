@@ -30,6 +30,7 @@ bool cData::operator<(cData _data)
 	else
 		return false;
 }
+
 bool cData::operator>(cData _data)
 {
 	if(sData.compare(_data.getData()) > 0)
@@ -37,6 +38,7 @@ bool cData::operator>(cData _data)
 	else
 		return false;
 }
+
 bool cData::operator<(string _string)
 {
 	if(sData.compare(_string) < 0)
@@ -44,6 +46,7 @@ bool cData::operator<(string _string)
 	else
 		return false;
 }
+
 bool cData::operator>(string _string)
 {
 	if(sData.compare(_string) > 0)
@@ -51,18 +54,21 @@ bool cData::operator>(string _string)
 	else
 		return false;
 }
+
 bool cData::operator==(cData _data)
 {
 	if(_data.getData() == sData)
 		return true;
 	 return false;
 }
+
 bool cData::operator==(string _data)
 {
 	if(sData ==  _data)
 		return true;
 	return false;
 }
+
 cData *cData::clone()
 {
 	return new cData(sData);

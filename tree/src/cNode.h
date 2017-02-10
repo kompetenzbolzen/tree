@@ -36,6 +36,10 @@ public:
 	/*
 	 * Searches for a Object by its Primary Key, returns pointer pointing at result (NULL if no result)
 	 */
+	virtual cData* getById(unsigned int, unsigned int&) = 0;
+	/*
+	 * searches for obejct ID (-> inorder)
+	 */
 	virtual void getSortet(list<cData>* _list) = 0;
 	/*
 	 * gets sortet list
@@ -76,6 +80,8 @@ public:
 	/*
 	 * Searches for a Object by its Primary Key, returns pointer pointing at result (NULL if no result)
 	 */
+	cData* getById(unsigned int, unsigned int&);
+
 	void getSortet(list<cData>* _list);
 	/*
 	 * Copy all cData Instances into _list
@@ -111,9 +117,12 @@ public:
 	/*
 	 * Searches for a Object by its Primary Key, returns pointer pointing at result (NULL if no result)
 	 */
+	cData* getById(unsigned int, unsigned int&);
+
 	void getSortet(list<cData>* _list);
 
 	unsigned int getSubtreeSize();
+
 	unsigned int getDepth(unsigned int);
 
 	void draw(int _depth);

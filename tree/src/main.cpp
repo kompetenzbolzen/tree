@@ -5,6 +5,8 @@
  *      Author: jonas
  */
 #include <iostream>
+#include <string>
+#include <sstream>
 #include "cTree.h"
 
 using namespace std;
@@ -13,22 +15,30 @@ int main (void)
 {
 	cTree* a = new cTree();
 
-	/*for (char i = ' '; i <= '~'; i ++)
+	for (char b = ' '; b <= '~'; b++)
 	{
-		string s(&i);
-		a->insert(&s[0]);
+		stringstream ss;
+		string y;
+
+		ss << b;
+		ss >> y;
+
+		a->insert(y);
 	}
 
 	a->draw();
-	cout << a->size() << "/" << a->depth() << endl;
-	cout << a->gradeOfUnbalance() << endl;
 	cout << "-------------------" << endl;
 	a->sort();
 	a->draw();
-	cout << a->size() << "/" << a->depth() << endl;
-	cout << a->gradeOfUnbalance() << endl;*/
 
-	while(1)
+	for(unsigned int i = 0; i < a->size(); i++)
+	{
+		cout << (*a)[i]->getData() << ", ";
+	}
+	cout << endl;
+
+
+	/*while(1)
 	{
 		for (char i = ' '; i <= '~'; i ++)
 		{
@@ -37,7 +47,7 @@ int main (void)
 		}
 		a->sort();
 		a->clear();
-	}
+	}*/
 
 	delete a;
 

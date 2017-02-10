@@ -10,23 +10,23 @@
 cTree::cTree()
 {
 	root = new cEndnode();
-}
+}//Constructor
 
 cTree::~cTree()
 {
 	delete root;
-}
+}//Destructor
 
 void cTree::insert(cData* _data)
 {
 	root->insert(_data, &root);
-}
+}//insert
 
 void cTree::insert(string _data)
 {
 	cData* tmp = new cData(_data);
 	insert(tmp);
-}
+}//insert
 
 void cTree::remove(cData* _data)
 {
@@ -34,32 +34,32 @@ void cTree::remove(cData* _data)
 	root->remove(_data, &dataList, &root);
 
 	insertList(&dataList);
-}
+}//remove
 
 void cTree::getList(list<cData>* _list)
 {
 	root->getSortet(_list);
-}
+}//getList
 
 void cTree::draw()
 {
 	root->draw(0);
-}
+}//draw
 
 cData* cTree::search(string _search)
 {
 	return root->search(_search);
-}
+}//search
 
 void cTree::clear()
 {
 	delete root;
 	root = new cEndnode();
-}
+}//clear
 
 void cTree::insertList(list<cData>* _list)
 {
-	unsigned int oldSize = _list->size(); //used bc size of list changes during for loop
+	unsigned int oldSize = _list->size(); //used bc size of list changes during for-loop
 	list<cData> tmpList;
 
 	if (oldSize <= 0) //Nothing to do if list is empty
@@ -81,15 +81,8 @@ void cTree::insertList(list<cData>* _list)
 	if(_list->size() <= 0) //Nothing to do if list is empty
 		return;
 
-	//TODO Redundant! For loop not needed!
-	oldSize = _list->size();
-	for (unsigned int i = 0; i < oldSize; i++)
-	{
-		tmpList.push_back(_list->front());
-		_list->pop_front();
-	}
-	insertList(&tmpList); //Insert second half(bigger value) of list below new root
-}
+	insertList(_list); //Insert second half(bigger value) of list below new root
+}//insertList
 
 void cTree::sort()
 {
@@ -97,17 +90,17 @@ void cTree::sort()
 	root->getSortet(&sortetList); //get inorder
 	clear(); //clear tree
 	insertList(&sortetList); //re insert inorderlist
-}
+}//sort
 
 unsigned int cTree::size()
 {
 	return root->getSubtreeSize();
-}
+}//size
 
 unsigned int cTree::depth()
 {
 	return root->getDepth(0);
-}
+}//depth
 
 unsigned int cTree::gradeOfUnbalance()
 {
@@ -115,8 +108,13 @@ unsigned int cTree::gradeOfUnbalance()
 	unsigned int iDepth = depth();
 
 	return (iDepth / minDepth) - 1; //-1 so 100% = 0
-}
+}//gradeOfUnbalance
 
+cData *cTree::operator [](unsigned int _i)
+{
+	unsigned int a = 0;
+	return root->getById(_i, a);
+}
 
 
 

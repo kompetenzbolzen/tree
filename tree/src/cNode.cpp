@@ -68,12 +68,27 @@ cData* cDatanode::search(string _search)
 	return NULL;
 }//search
 
+cData* cDatanode::getById(unsigned int _id, unsigned int &_cntr)
+{
+	cData* tmpData = nextSmaller->getById(_id, _cntr);
+
+	if(tmpData)
+		return tmpData;
+
+	if(_id == _cntr)
+		return data;
+
+	_cntr++;
+
+	return nextBigger->getById(_id, _cntr);
+}
+
 void cDatanode::getSortet(list<cData>* _list)
 {
 	nextSmaller->getSortet(_list);
 	_list->push_back(*data);
 	nextBigger->getSortet(_list);
-}//getSorte
+}//getSortet
 
 void cDatanode::draw(int _depth)
 {
@@ -84,7 +99,7 @@ void cDatanode::draw(int _depth)
 	nextSmaller->draw(_depth + 1);
 	nextBigger->draw(_depth + 1);
 
-}
+}//draw
 
 unsigned int cDatanode::getDepth(unsigned int _depth)
 {
@@ -94,12 +109,12 @@ unsigned int cDatanode::getDepth(unsigned int _depth)
 	depth2 = nextBigger->getDepth(_depth + 1);
 
 	return depth1 < depth2 ? depth2:depth1; //return bigger depth
-}
+}//getDepth
 
 unsigned int cDatanode::getSubtreeSize()
 {
 	return nextSmaller->getSubtreeSize() + nextBigger->getSubtreeSize() + 1;
-}
+}//getSubtreeSize
 //
 //==============================================================================================================================
 //
@@ -124,6 +139,11 @@ void cEndnode::remove(cData*, list<cData>*, cNode**)
 }
 
 cData* cEndnode::search(string)
+{
+	return NULL;
+}
+
+cData* cEndnode::getById(unsigned int _id, unsigned int& _cntr)
 {
 	return NULL;
 }

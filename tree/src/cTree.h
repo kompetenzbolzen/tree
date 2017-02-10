@@ -57,17 +57,20 @@ public:
 	 */
 	unsigned int gradeOfUnbalance();
 	/*
-	 *
+	 * returns integer value indicating to with the tree is unsymmetrical
+	 * 0: tree is symmetrical
+	 * x: tree is x-times deeper than it could
 	 */
 	cData* search(string);
 	/*
 	 * returns pointer to matching object
+	 * NULL if no match
 	 */
-
 	void draw();
 	/*
 	 * draws subtree in ASCII
 	 */
+	cData* operator[](unsigned int);
 
 
 private:

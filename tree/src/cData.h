@@ -34,6 +34,7 @@ public:
 	 * clones current cData instance
 	 */
 
+	//Define operators
 	bool operator<(cData);
 	bool operator>(cData);
 	bool operator<(string);
