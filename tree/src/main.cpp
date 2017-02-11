@@ -15,27 +15,34 @@ int main (void)
 {
 	cTree* a = new cTree();
 
-	for (char b = ' '; b <= '~'; b++)
+	cout << "Filling with data..." << endl;
+	for (char b = ' '; b <= '~'; b++) //insert some data into tree
 	{
-		stringstream ss;
-		string y;
+		for(char c = ' '; c<= '~'; c++)
+		{
+			stringstream ss;
+			ss << b;
+			ss << c;
 
-		ss << b;
-		ss >> y;
-
-		a->insert(y);
+			a->insert(ss.str());
+		}
 	}
 
-	a->draw();
-	cout << "-------------------" << endl;
-	a->sort();
-	a->draw();
+	//a->draw();
+	cout << "size: "<< a->size() << endl << "Unbalance: " << a->gradeOfUnbalance() << endl << "Depth: " << a->depth() << endl;
 
-	for(unsigned int i = 0; i < a->size(); i++)
+	cout << "Balancing..." << endl;
+	a->sort();
+	cout << "size: "<< a->size() << endl << "Unbalance: " << a->gradeOfUnbalance() << endl << "Depth: " << a->depth() << endl;
+	//a->draw();
+	cout << "-------------------" << endl;
+	//a->draw();
+
+	/*for(unsigned int i = 0; i < a->size(); i++)
 	{
 		cout << (*a)[i]->getData() << ", ";
 	}
-	cout << endl;
+	cout << endl;*/
 
 
 	/*while(1)
