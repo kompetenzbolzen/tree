@@ -30,6 +30,7 @@ public:
 	void insertList(list<cData>*);
 	/*
 	 * inserts List into tree as balanced as possible
+	 * assumes ordered list!
 	 */
 	void getList(list<cData>*);
 	/*

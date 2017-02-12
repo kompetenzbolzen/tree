@@ -101,6 +101,7 @@ private:
 class cEndnode:public cNode
 {
 public:
+	//TODO Optimize! there are 2^(n+1) endnodes in a tree wich each take 4B!
 	cEndnode();
 	~cEndnode();
 

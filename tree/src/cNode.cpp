@@ -116,12 +116,13 @@ unsigned int cDatanode::getSubtreeSize()
 {
 	return nextSmaller->getSubtreeSize() + nextBigger->getSubtreeSize() + 1;
 }//getSubtreeSize
+
 //
 //==============================================================================================================================
 //
 
-cEndnode::cEndnode() {}
-cEndnode::~cEndnode() {}
+cEndnode::cEndnode() { }
+cEndnode::~cEndnode() { }
 
 cData cEndnode::getDataObject()
 {

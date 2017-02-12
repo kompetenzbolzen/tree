@@ -30,13 +30,15 @@ int main (void)
 
 	//a->draw();
 	cout << "size: "<< a->size() << endl << "Unbalance: " << a->gradeOfUnbalance() << endl << "Depth: " << a->depth() << endl;
-
+	cout << "deleting element" << endl;
+	a->remove((*a)[100]);
 	cout << "Balancing..." << endl;
+	a->draw();
 	a->sort();
 	cout << "size: "<< a->size() << endl << "Unbalance: " << a->gradeOfUnbalance() << endl << "Depth: " << a->depth() << endl;
-	//a->draw();
+	//
 	cout << "-------------------" << endl;
-	//a->draw();
+	a->draw();
 
 	/*for(unsigned int i = 0; i < a->size(); i++)
 	{
