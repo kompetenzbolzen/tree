@@ -1,0 +1,33 @@
+tree
+by Jonas Gunz, 2/2017
+
+Implements a tree datastructure
+
+WINDOWS
+=======
+use MinGW (mingw.org) GCC Compiler
+Make sure C:\MinGW\bin and C:\MinGW\msys\1.0\bin are added to the PATH system variable!
+
+LINUX / UNIX
+============
+use standard gcc, g++ and make as supplied with your distribution
+
+BUILD INSTRUCTIONS
+==================
+
+Build with
+
+cd ./Debug
+make all
+
+Run with
+
+cd ./Debug
+./tree
+
+clean with
+cd ./Debug
+make clean
+
+Source in 
+./src
