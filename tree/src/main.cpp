@@ -11,11 +11,10 @@
 
 using namespace std;
 
-int main (void)
-{
-	cTree* a = new cTree();
+cTree* a;
 
-	cout << "Filling with data..." << endl;
+void fill()
+{
 	for (char b = ' '; b <= '~'; b++) //insert some data into tree
 	{
 		for(char c = ' '; c<= '~'; c++)
@@ -27,37 +26,45 @@ int main (void)
 			a->insert(ss.str());
 		}
 	}
+}
 
-	//a->draw();
-	cout << "size: "<< a->size() << endl << "Unbalance: " << a->gradeOfUnbalance() << endl << "Depth: " << a->depth() << endl;
-	cout << "deleting element" << endl;
-	a->remove((*a)[100]);
-	cout << "Balancing..." << endl;
-	a->draw();
-	a->sort();
-	cout << "size: "<< a->size() << endl << "Unbalance: " << a->gradeOfUnbalance() << endl << "Depth: " << a->depth() << endl;
-	//
-	cout << "-------------------" << endl;
-	a->draw();
+int main (void)
+{
+	a = new cTree();
+	int iInputOption;
 
-	/*for(unsigned int i = 0; i < a->size(); i++)
+	while (1)
 	{
-		cout << (*a)[i]->getData() << ", ";
-	}
-	cout << endl;*/
+		cout << "[1] Fill with Data\n";
+		cout << "[2] Clear\n";
+		cout << "[3] Balance\n";
+		cout << "[4] Draw\n";
+		cout << "[5] Info\n";
+		cout << "> ";
 
+		cin >> iInputOption;
 
-	/*while(1)
-	{
-		for (char i = ' '; i <= '~'; i ++)
+		switch(iInputOption)
 		{
-			string s(&i);
-			a->insert(&s[0]);
+		case 1:
+			cout << "Filling with Data.....";
+			fill();
+			cout << "OK\n";
+			break;
+		case 2:
+			a->clear();
+			break;
+		case 3:
+			a->sort();
+			break;
+		case 4:
+			a->draw();
+			break;
+		default:
+			cout << "Unrecognized Command\n";
+			break;
 		}
-		a->sort();
-		a->clear();
-	}*/
-
+	}
 	delete a;
 
 	return 0;
