@@ -104,6 +104,9 @@ unsigned int cTree::depth()
 
 unsigned int cTree::gradeOfUnbalance()
 {
+	if(root->getSubtreeSize() == 0)
+		return 0;
+
 	double minDepth = log2(size());
 	unsigned int iDepth = depth();
 
