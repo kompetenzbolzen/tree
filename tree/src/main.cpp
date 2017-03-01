@@ -49,6 +49,9 @@ int main (void)
 
 		switch(iInputOption)
 		{
+		case 0:
+			return 0;
+			break;
 		case 1: //fill
 			cout << "Filling with Data.....";
 			fill();
