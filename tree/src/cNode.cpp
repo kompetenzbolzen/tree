@@ -117,6 +117,18 @@ unsigned int cDatanode::getSubtreeSize()
 	return nextSmaller->getSubtreeSize() + nextBigger->getSubtreeSize() + 1;
 }//getSubtreeSize
 
+sSubTree cDatanode::getSubTree()
+{
+	sSubTree s;
+	s.nextBigger = nextBigger;
+	s.nextSmaller = nextSmaller;
+
+	nextBigger = new cEndnode();
+	nextSmaller = new cEndnode();
+
+	return s;
+}
+
 //
 //==============================================================================================================================
 //
@@ -173,6 +185,10 @@ unsigned int cEndnode::getDepth(unsigned int _depth)
 	return _depth;
 }
 
+sSubTree cEndnode::getSubTree()
+{
+	return sSubTree{NULL, NULL};
+}
 
 
 

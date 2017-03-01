@@ -14,6 +14,14 @@
 
 using namespace std;
 
+class cNode;
+
+struct sSubTree
+{
+	cNode *nextBigger;
+	cNode *nextSmaller;
+};
+
 class cNode  {
 public:
 	cNode();
@@ -59,6 +67,8 @@ public:
 	/*
 	 *draws tree in Ascii
 	 */
+
+	virtual sSubTree getSubTree() = 0;
 };
 
 class cDatanode:public cNode
@@ -92,6 +102,7 @@ public:
 	void draw(int _depth);
 	unsigned int getSubtreeSize();
 	unsigned int getDepth(unsigned int);
+	sSubTree getSubTree();
 private:
 	cNode *nextSmaller, *nextBigger;
 	cData *data;
@@ -130,6 +141,8 @@ public:
 	unsigned int getDepth(unsigned int);
 
 	void draw(int _depth);
+
+	sSubTree getSubTree();
 private:
 };
 
