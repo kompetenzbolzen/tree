@@ -16,12 +16,14 @@ cTree* a;
 
 void fill(void);
 
+void stress(void);
+
 int main (void)
 {
 	a = new cTree();
-	int i;
-	int iInputOption;
-	string s;
+	int i; //Argument Integer
+	int iInputOption; //Input Selection
+	string s; //Argument String
 
 	cout << endl;
 	cout << "| |" << endl;
@@ -42,6 +44,7 @@ int main (void)
 		cout << "[6] Insert\n";
 		cout << "[7] Remove\n";
 		cout << "[8] Get by Inorder ID\n";
+		cout << "[9] Stresstest\n";
 		cout << "[0] Exit\n";
 		cout << "> ";
 
@@ -49,7 +52,7 @@ int main (void)
 
 		switch(iInputOption)
 		{
-		case 0:
+		case 0: //fill
 			return 0;
 			break;
 		case 1: //fill
@@ -84,6 +87,10 @@ int main (void)
 			cin >> i;
 			cout << i << ": " << (*a)[i]->getData() << endl;
 			break;
+		case 9:
+			cout << "Started Stress-Loop. Stop with Ctrl+C\n";
+			stress();
+			break;
 		default:
 			cout << "Unrecognized Command\n";
 			break;
@@ -110,4 +117,15 @@ void fill(void)
 }
 
 
-
+void stress(void)
+{
+	while(1)
+	{
+		fill();
+		a->sort();
+		for(int i = 0; i < a->size(); i++)
+		{
+			a->remove((*a)[i]);
+		}
+	}
+}
