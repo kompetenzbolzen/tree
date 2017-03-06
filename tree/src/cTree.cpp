@@ -30,10 +30,13 @@ void cTree::insert(string _data)
 
 void cTree::remove(cData* _data)
 {
-	list<cData> dataList; //List of Data that has to be re-inserted into the tree
-	root->remove(_data, &dataList, &root);
+	sSubTree subTree;
+	root->remove(_data, &subTree, &root);
 
-	insertList(&dataList);
+	root->insert(subTree.nextSmaller->getFirstNode(&root), &root); //Insert new root
+	//Insert remaining subtree
+	root->insert(subTree.nextSmaller, &root);
+	root->insert(subTree.nextBigger, &root);
 }//remove
 
 void cTree::getList(list<cData>* _list)

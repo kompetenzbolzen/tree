@@ -123,7 +123,7 @@ void stress(void)
 	{
 		fill();
 		a->sort();
-		for(int i = 0; i < a->size(); i++)
+		for(unsigned int i = 0; i < a->size(); i++)
 		{
 			a->remove((*a)[i]);
 		}

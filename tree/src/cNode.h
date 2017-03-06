@@ -31,23 +31,27 @@ public:
 	/*
 	 * returns dataObject
 	 */
-	virtual void insert(cData*,  cNode** = NULL) = 0;
+	virtual void insert(cData* _data,  cNode** _me) = 0;
 	/*
 	 * Inserts *cData into tree
 	 * cNode** required to change pointer in the caller's pointer to next element
 	 */
-	virtual void remove(cData*, list<cData>*, cNode**) = 0;
+	virtual void insert(cNode* _data, cNode** _me) = 0;
 	/*
-	 * Removes *cData from tree. Its subtree is stored in list<cData>*. cNode** refers to pointer to pointer to self to be able to change reference
+	 * Overloading Function to be able to insert complete subtrees
 	 */
-	virtual cData* search(string) = 0;
+	virtual void remove(cData* _data, sSubTree* _subtree, cNode** _me) = 0;
+	/*
+	 * Removes *cData from tree. Its subtree is stored in sSubTree*. cNode** refers to pointer to pointer to self to be able to change reference
+	 */
+	virtual cData* search(string _data) = 0;
 	/*
 	 * Searches for a Object by its Primary Key, returns pointer pointing at result (NULL if no result)
 	 */
-	virtual cData* getById(unsigned int, unsigned int&) = 0;
+	virtual cData* getById(unsigned int _id, unsigned int& _cntr) = 0;
 	/*
 	 * searches for obejct ID (-> inorder)
-	 * int: wanted if
+	 * int: wanted id
 	 * int&: id counter
 	 */
 	virtual void getSortet(list<cData>* _list) = 0;
@@ -58,17 +62,23 @@ public:
 	/*
 	 * returns size of subtree
 	 */
-	virtual unsigned int getDepth(unsigned int) = 0;
+	virtual unsigned int getDepth(unsigned int _deppth) = 0;
 	/*
 	 * returns maximum depth under node
 	 * unsigned int: depth of parent
 	 */
 	virtual void draw(int _depth) = 0;
 	/*
-	 *draws tree in Ascii
+	 *draws tree in ASCII
 	 */
-
 	virtual sSubTree getSubTree() = 0;
+	/*
+	 * Returns subtree of this Node, nextSmaller and nextBigger are set to new Endnodes
+	 */
+	virtual cNode *getFirstNode(cNode** _me) = 0;
+	/*
+	 * Returns Pointer to Inorder-First element in Tree
+	 */
 };
 
 class cDatanode:public cNode
@@ -81,11 +91,12 @@ public:
 	/*
 	 * returns dataObject
 	 */
-	void insert(cData*, cNode** = NULL);
+	void insert(cData*, cNode**);
 	/*
 	 * Inserts *cData into tree
 	 */
-	void remove(cData*, list<cData>*, cNode**);
+	void insert(cNode*, cNode**);
+	void remove(cData*, sSubTree*, cNode**);
 	/*
 	 * Removes *cData from tree
 	 */
@@ -103,6 +114,7 @@ public:
 	unsigned int getSubtreeSize();
 	unsigned int getDepth(unsigned int);
 	sSubTree getSubTree();
+	cNode *getFirstNode(cNode**);
 private:
 	cNode *nextSmaller, *nextBigger;
 	cData *data;
@@ -124,7 +136,8 @@ public:
 	/*
 	 * Inserts *cData into tree
 	 */
-	void remove(cData*, list<cData>*, cNode**);
+	void insert(cNode*, cNode**);
+	void remove(cData*, sSubTree*, cNode**);
 	/*
 	 * Removes *cData from tree
 	 */
@@ -143,6 +156,8 @@ public:
 	void draw(int _depth);
 
 	sSubTree getSubTree();
+
+	cNode *getFirstNode(cNode**);
 private:
 };
 

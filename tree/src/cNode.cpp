@@ -42,20 +42,29 @@ void cDatanode::insert(cData* _data, cNode** _me)
 		nextSmaller->insert(_data, &nextSmaller);
 }//insert
 
-void cDatanode::remove(cData* _data, list<cData>* _list, cNode** _me)
+void cDatanode::insert(cNode* _data, cNode** _me)
+{
+	if (_data->getDataObject() > *data)
+		nextBigger->insert(_data, &nextBigger);
+	else if (_data->getDataObject() == *data)
+		return;
+	else
+		nextSmaller->insert(_data, &nextSmaller);
+}
+
+void cDatanode::remove(cData* _data, sSubTree* _subtree, cNode** _me)
 {
 	if(*_data == *data)
 	{
 		//save subtree inorder before deleting
-		nextSmaller->getSortet(_list);
-		nextBigger->getSortet(_list);
+		*_subtree = getSubTree();
 		*_me = new cEndnode(); //set pointer to this in parent to new cEndnode
 		delete this;
 	}
 	else if (*_data > *data)
-		nextBigger->remove(_data, _list, &nextBigger);
+		nextBigger->remove(_data, _subtree, &nextBigger);
 	else if (*_data < *data)
-		nextSmaller->remove(_data, _list, &nextSmaller);
+		nextSmaller->remove(_data, _subtree, &nextSmaller);
 }//remove
 
 cData* cDatanode::search(string _search)
@@ -129,6 +138,11 @@ sSubTree cDatanode::getSubTree()
 	return s;
 }
 
+cNode *cDatanode::getFirstNode(cNode** _me)
+{
+	return nextSmaller->getFirstNode(&nextSmaller);
+}
+
 //
 //==============================================================================================================================
 //
@@ -147,7 +161,13 @@ void cEndnode::insert(cData* _data, cNode** _me)
 	delete this;
 }
 
-void cEndnode::remove(cData*, list<cData>*, cNode**)
+void cEndnode::insert(cNode* _data, cNode** _me)
+{
+	*_me = _data;
+	delete this;
+}
+
+void cEndnode::remove(cData*, sSubTree*, cNode**)
 {
 	return;
 }
@@ -190,7 +210,11 @@ sSubTree cEndnode::getSubTree()
 	return sSubTree{NULL, NULL};
 }
 
-
+cNode *cEndnode::getFirstNode(cNode** _me){
+	cNode* tmp = *_me;
+	*_me = new cEndnode();
+	return tmp;
+}
 
 
 
