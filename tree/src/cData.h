@@ -18,7 +18,7 @@ using namespace std;
 
 class cData{
 public:
-	cData(string _data);
+	cData(string _data, bool _empty = false);
 	/*
 	 * Initializes cData with _data as saved Information
 	 */
@@ -34,6 +34,8 @@ public:
 	 * clones current cData instance
 	 */
 
+	bool isEmpty();
+
 	//Define operators
 	bool operator<(cData);
 	bool operator>(cData);
@@ -43,6 +45,7 @@ public:
 	bool operator==(string);
 
 private:
+	bool empty;
 	string sData;
 };
 

@@ -32,11 +32,31 @@ void cTree::remove(cData* _data)
 {
 	sSubTree subTree;
 	root->remove(_data, &subTree, &root);
+	cout << "Remove Finished\n";
 
-	root->insert(subTree.nextSmaller->getFirstNode(&root), &root); //Insert new root
+	if(subTree.nextBigger && subTree.nextSmaller)
+	{
+		cNode* newRoot = subTree.nextSmaller->getFirstNode( &(subTree.nextSmaller));
+		cout << "Got new root\n";
+
+		root->insert(newRoot, &root );
+		cout << "Inserted new root\n";
+	}
+	if (subTree.nextBigger)
+	{
+		root->insert(subTree.nextBigger, &root);
+		cout << "nextBigger inserted\n";
+	}
+	if(subTree.nextSmaller)
+	{
+		root->insert(subTree.nextSmaller, &root);
+		cout << "nextSmaller inserted\n";
+	}
+
 	//Insert remaining subtree
-	root->insert(subTree.nextSmaller, &root);
-	root->insert(subTree.nextBigger, &root);
+
+
+
 }//remove
 
 void cTree::getList(list<cData>* _list)

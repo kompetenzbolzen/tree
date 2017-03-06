@@ -44,10 +44,13 @@ void cDatanode::insert(cData* _data, cNode** _me)
 
 void cDatanode::insert(cNode* _data, cNode** _me)
 {
+	if( _data->getDataObject().isEmpty())
+		return; //_data is endnode, return
+
 	if (_data->getDataObject() > *data)
 		nextBigger->insert(_data, &nextBigger);
 	else if (_data->getDataObject() == *data)
-		return;
+		return; //data already exists, abort
 	else
 		nextSmaller->insert(_data, &nextSmaller);
 }
@@ -56,7 +59,7 @@ void cDatanode::remove(cData* _data, sSubTree* _subtree, cNode** _me)
 {
 	if(*_data == *data)
 	{
-		//save subtree inorder before deleting
+		//save subtree before deleting
 		*_subtree = getSubTree();
 		*_me = new cEndnode(); //set pointer to this in parent to new cEndnode
 		delete this;
@@ -140,7 +143,17 @@ sSubTree cDatanode::getSubTree()
 
 cNode *cDatanode::getFirstNode(cNode** _me)
 {
-	return nextSmaller->getFirstNode(&nextSmaller);
+	cNode* ret = nextSmaller->getFirstNode(&nextSmaller);
+	if(ret) //Pointer not empty, return ret
+	{
+		return ret;
+	}
+	else //Pointer is empty, Return me
+	{
+		cNode* tmp = *_me;
+		*_me = new cEndnode();
+		return tmp;
+	}
 }
 
 //
@@ -152,7 +165,8 @@ cEndnode::~cEndnode() { }
 
 cData cEndnode::getDataObject()
 {
-	return (cData)NULL;
+	cData tmp("", true);
+	return tmp;
 }
 
 void cEndnode::insert(cData* _data, cNode** _me)
@@ -211,9 +225,7 @@ sSubTree cEndnode::getSubTree()
 }
 
 cNode *cEndnode::getFirstNode(cNode** _me){
-	cNode* tmp = *_me;
-	*_me = new cEndnode();
-	return tmp;
+	return NULL;
 }
 
 

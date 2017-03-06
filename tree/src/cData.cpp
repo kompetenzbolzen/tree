@@ -7,9 +7,10 @@
 
 #include "cData.h"
 
-cData::cData(string _data)
+cData::cData(string _data,  bool _empty)
 {
 	sData = _data;
+	empty = _empty;
 }
 
 cData::~cData()
@@ -20,6 +21,11 @@ cData::~cData()
 string cData::getData()
 {
 	return sData;
+}
+
+bool cData::isEmpty()
+{
+	return empty;
 }
 
 
