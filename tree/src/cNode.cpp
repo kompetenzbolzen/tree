@@ -9,6 +9,11 @@
 cNode::cNode() {}
 cNode::~cNode(){}
 
+bool cNode::isEndnode()
+{
+	return false;
+}
+
 //
 //=====================================================================================================================
 //
@@ -44,7 +49,7 @@ void cDatanode::insert(cData* _data, cNode** _me)
 
 void cDatanode::insert(cNode* _data, cNode** _me)
 {
-	if( _data->getDataObject().isEmpty())
+	if( _data->isEndnode())
 		return; //_data is endnode, return
 
 	if (_data->getDataObject() > *data)
@@ -145,10 +150,8 @@ cNode *cDatanode::getFirstNode(cNode** _me)
 {
 	cNode* ret = nextSmaller->getFirstNode(&nextSmaller);
 	if(ret) //Pointer not empty, return ret
-	{
 		return ret;
-	}
-	else //Pointer is empty, Return me
+	else //Pointer is empty, This is the last Object in branch
 	{
 		cNode* tmp = *_me;
 		*_me = new cEndnode();
@@ -226,6 +229,11 @@ sSubTree cEndnode::getSubTree()
 
 cNode *cEndnode::getFirstNode(cNode** _me){
 	return NULL;
+}
+
+bool cEndnode::isEndnode()
+{
+	return true;
 }
 
 

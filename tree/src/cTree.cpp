@@ -30,33 +30,32 @@ void cTree::insert(string _data)
 
 void cTree::remove(cData* _data)
 {
+	//Remove
 	sSubTree subTree;
 	root->remove(_data, &subTree, &root);
-	cout << "Remove Finished\n";
 
+	//Re-Insert subtree
 	if(subTree.nextBigger && subTree.nextSmaller)
 	{
-		cNode* newRoot = subTree.nextSmaller->getFirstNode( &(subTree.nextSmaller));
-		cout << "Got new root\n";
+		cNode* newRoot = subTree.nextSmaller->getFirstNode( &(subTree.nextSmaller)); //returns zero
 
-		root->insert(newRoot, &root );
-		cout << "Inserted new root\n";
+		if(newRoot) //Only insert if nextSmaller is no Endnode
+		{
+			root->insert(newRoot, &root );
+		}
 	}
-	if (subTree.nextBigger)
-	{
-		root->insert(subTree.nextBigger, &root);
-		cout << "nextBigger inserted\n";
+	if (subTree.nextBigger) {
+		if(!subTree.nextBigger->isEndnode()) //Inserting Endnodes is pointless
+			root->insert(subTree.nextBigger, &root);
+		else
+			delete subTree.nextBigger; //Delete pointless Endnode
 	}
-	if(subTree.nextSmaller)
-	{
-		root->insert(subTree.nextSmaller, &root);
-		cout << "nextSmaller inserted\n";
+	if(subTree.nextSmaller) {
+		if(!subTree.nextSmaller->isEndnode())
+			root->insert(subTree.nextSmaller, &root);
+		else
+			delete subTree.nextSmaller;
 	}
-
-	//Insert remaining subtree
-
-
-
 }//remove
 
 void cTree::getList(list<cData>* _list)

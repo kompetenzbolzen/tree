@@ -79,41 +79,41 @@ public:
 	/*
 	 * Returns Pointer to Inorder-First element in Tree
 	 */
+	virtual bool isEndnode();
+	/*
+	 * Returns false for Endnode, else true
+	 */
 };
 
 class cDatanode:public cNode
 {
 public:
 	cDatanode(cData* _data);
+
 	~cDatanode();
 
 	cData getDataObject();
-	/*
-	 * returns dataObject
-	 */
+
 	void insert(cData*, cNode**);
-	/*
-	 * Inserts *cData into tree
-	 */
+
 	void insert(cNode*, cNode**);
+
 	void remove(cData*, sSubTree*, cNode**);
-	/*
-	 * Removes *cData from tree
-	 */
+
 	cData* search(string);
-	/*
-	 * Searches for a Object by its Primary Key, returns pointer pointing at result (NULL if no result)
-	 */
+
 	cData* getById(unsigned int, unsigned int&);
 
 	void getSortet(list<cData>* _list);
-	/*
-	 * Copy all cData Instances into _list
-	 */
+
 	void draw(int _depth);
+
 	unsigned int getSubtreeSize();
+
 	unsigned int getDepth(unsigned int);
+
 	sSubTree getSubTree();
+
 	cNode *getFirstNode(cNode**);
 private:
 	cNode *nextSmaller, *nextBigger;
@@ -129,22 +129,15 @@ public:
 	~cEndnode();
 
 	cData getDataObject();
-	/*
-	 * returns dataObject
-	 */
+
 	void insert(cData*, cNode** );
-	/*
-	 * Inserts *cData into tree
-	 */
+
 	void insert(cNode*, cNode**);
+
 	void remove(cData*, sSubTree*, cNode**);
-	/*
-	 * Removes *cData from tree
-	 */
+
 	cData* search(string);
-	/*
-	 * Searches for a Object by its Primary Key, returns pointer pointing at result (NULL if no result)
-	 */
+
 	cData* getById(unsigned int, unsigned int&);
 
 	void getSortet(list<cData>* _list);
@@ -158,6 +151,9 @@ public:
 	sSubTree getSubTree();
 
 	cNode *getFirstNode(cNode**);
+
+	bool isEndnode();
+
 private:
 };
 

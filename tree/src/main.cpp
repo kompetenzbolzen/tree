@@ -14,10 +14,16 @@ using namespace std;
 
 cTree* a;
 
+//Function Prototypes
 void fill(void);
 
 void stress(void);
 
+void fillSmall(void);
+
+//
+//MAIN
+//
 int main (void)
 {
 	a = new cTree();
@@ -53,11 +59,12 @@ int main (void)
 		switch(iInputOption)
 		{
 		case 0: //fill
+			delete a;
 			return 0;
 			break;
 		case 1: //fill
 			cout << "Filling with Data.....";
-			fill();
+			fillSmall();
 			cout << "OK\n";
 			break;
 		case 2: //clear
@@ -99,7 +106,7 @@ int main (void)
 	delete a;
 
 	return 0;
-}
+}//main
 
 void fill(void)
 {
@@ -116,6 +123,16 @@ void fill(void)
 	}
 }
 
+void fillSmall(void)
+{
+	for(char c = 'a'; c<= 'z'; c++)
+	{
+		stringstream ss;
+		ss << c;
+
+		a->insert(ss.str());
+	}
+}
 
 void stress(void)
 {
